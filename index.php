@@ -14,14 +14,14 @@ define('URL_ASSETS', 'http://localhost:8080/PHPMVC/assets');
 spl_autoload_register(function ($class_name){
     $path = array(APP_PATH, CONTROLLERS_PATH, MODEL_PATH, VIEW_PATH, CORE_PATH, DB_PATH, HELPER_PATH, URL, URL_ASSETS);
     foreach ($path as $class_file_path){
-        $full_path =  $class_file_path.'/'.$class_name.'php';
+        $full_path =  $class_file_path.'/'.$class_name.'.php';
         if (file_exists($full_path)){
             require $full_path;
         }
     }
 });
 
-function($view, $data){
+function view($view, $data){
     ob_start();
     //chỗ này có thể truy vấn Database và xuất ra kết quả
     //=> tất cả đều lưu vào biến content
@@ -34,11 +34,12 @@ function($view, $data){
     //xuất ra kết quả
     echo $out;
 }
-
 $controller = isset($_REQUEST['controller']) ? $_REQUEST['controller'] : 'index';
+
 $controller = strtolower($controller); //strtolower chuyển các chữ in hoa trong biến về chữ thường
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'index';
 $action = strtolower($action);
+
 $actionName = $action.'Action';
 $controllerClass = $controller.'Controller';
 
@@ -47,7 +48,7 @@ if (class_exists($controllerClass)){
     if (method_exists($instanceController, $actionName)) {
         $instanceController -> $actionName();
     } else {
-        $instanceController -> indexAction();
+        $instanceController ->indexAction();
     }
 } else {
     $controllerClass = 'errorControler';
