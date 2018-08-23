@@ -92,4 +92,22 @@ class articleModel extends Database {
             }
         }
     }
+    public function detele($id){
+
+        $sql = "DELETE * FROM " . $this->table . " WHERE id=" . (int) $id;
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                return $row;
+            }
+        }else{
+            if(empty(trim($_GET["id"]))){
+                header("location: " . URL);
+                exit();
+
+        }return array();
+}
+
+
 }

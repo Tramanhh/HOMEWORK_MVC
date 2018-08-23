@@ -6,14 +6,8 @@ class articleController {
 
     public function indexAction()
     {
-
         $articleModel = new articleModel();
         $articles = $articleModel->getRows();
-
-        echo "<pre>";
-        print_r($articles);
-        echo "</pre>";
-        exit;
 
         return view('article', 'index', array('articles' => $articles));
 
@@ -21,12 +15,14 @@ class articleController {
 
 
     public function editAction(){
-        $name = "PHP Edit";
-        return view('article' , 'edit', array('name' => $name));
+
+        $articles = "PHP Edit";
+        return view('article' , 'edit', array('articles' => $articles));
     }
 
     public function deleteAction(){
-        $name = "PHP Delete";
-        return view('article' , 'delete', array('name' => $name));
+
+        $articles = "PHP Delete";
+        return view('article' , 'delete', array('articles' => $articles));
     }
 }

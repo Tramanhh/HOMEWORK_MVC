@@ -21,19 +21,15 @@ spl_autoload_register(function ($class_name){
     }
 });
 
-function view($view, $data){
+function view($view, $action, $data) {
     ob_start();
-    //chỗ này có thể truy vấn Database và xuất ra kết quả
-    //=> tất cả đều lưu vào biến content
     extract($data);
-    require VIEW_PATH.'/'.$view.'/'.$view.'php';
-
+    require VIEW_PATH.'/'.$view.'/'.$action.'.php';
     $out = ob_get_contents();
-    //ghi vào cache
     ob_end_clean();
-    //xuất ra kết quả
     echo $out;
 }
+
 $controller = isset($_REQUEST['controller']) ? $_REQUEST['controller'] : 'index';
 
 $controller = strtolower($controller); //strtolower chuyển các chữ in hoa trong biến về chữ thường

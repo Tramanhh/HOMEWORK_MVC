@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,8 +54,11 @@
                     <td><?php echo $article['id'] ?></td>
                     <td><?php echo $article['title'] ?></td>
                     <td><?php echo $article['article_content'] ?></td>
-                    <td><a href="<?php echo URL . 'index.php?controller=article&action=edit&id='.$article['id']?> "/>Sửa</a> </td>
-                    <td><a href="<?php echo URL . 'index.php?controller=article&action=delete&id='.$article['id']?> "/>Xóa</a> </td>
+                    <td><a href="<?php echo URL . 'index.php?controller=article&action=edit&id='.$article['id']?> "/>
+                        <button type="button" class="btn btn-primary">Sửa</button></a>
+                        <a href="<?php echo URL . 'index.php?controller=article&action=delete&id='.$article['id']?> "/>
+                        <button type="button" class="btn btn-warning">Xóa</button></a>
+                    </td>
                 </tr>
             <?php } ?>
             </tbody>
